@@ -2,6 +2,8 @@ package com.anh.map;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -22,17 +24,20 @@ import java.net.URL;
  * @UpdateRemark:
  */
 public class MapLoad {
-
+    // frame窗口的高宽
     private final int frameWidth = 800;
     private final int frameHeight = 600;
 
     private JFrame frame;
+
+    // 三个panel
     private JPanel mainPanel;
     private MapPanel mapPanel;
-
-    // 测试
     private JPanel layer;
-    private JButton jButton;
+
+    private JButton jButton1;
+    private JButton jButton2;
+    private JButton jButton3;
 
     public static void main(String[] args) {
         MapLoad mapLoad = new MapLoad();
@@ -50,22 +55,39 @@ public class MapLoad {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
+        initMapImg();
+        initLayerPanel();
+        mapPanel.setPreferredSize(new Dimension(frameWidth, frameHeight - 100));
+
         // 主面板
         mainPanel = new JPanel();
         mainPanel.setBackground(new Color(255, 0, 0));
 //        mainPanel.setOpaque(false);
         // 设置layout
-        mainPanel.setLayout(null);
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(mapPanel, BorderLayout.NORTH);
+        mainPanel.add(layer, BorderLayout.SOUTH);
         frame.setContentPane(mainPanel);
-
-        initMapImg();
-        mapPanel.setSize(frameWidth, frameHeight);
-
-        mainPanel.add(mapPanel);
-        mainPanel.add(layer);
 
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private void initLayerPanel() {
+        layer = new JPanel();
+        layer.setBackground(new Color(0, 255, 0));
+        layer.setPreferredSize(new Dimension(frameWidth, 70));
+
+        jButton1 = new JButton("OK1");
+        jButton1.setPreferredSize(new Dimension(60, 30));
+        jButton2 = new JButton("OK2");
+        jButton2.setPreferredSize(new Dimension(60, 30));
+        jButton3 = new JButton("OK3");
+        jButton3.setPreferredSize(new Dimension(60, 30));
+
+        layer.add(jButton1);
+        layer.add(jButton2);
+        layer.add(jButton3);
     }
 
     private void initMapImg() {
@@ -74,17 +96,6 @@ public class MapLoad {
         System.out.println("wh:" + preferredSize.width + ", " + preferredSize.height);
         int imageXSize = preferredSize.width / 256 + 2;
         int imageYSize = preferredSize.height / 256 + 2;
-
-        // 测试
-        layer = new JPanel();
-        layer.setBackground(new Color(0, 255, 0));
-        layer.setSize(800, 100);
-//        layer.setOpaque(true);
-
-        jButton = new JButton("OK");
-        jButton.setSize(100, 50);
-        jButton.setBackground(new Color(0, 0, 255));
-        layer.add(jButton);
 
         // panel设置
         mapPanel = new MapPanel(imageXSize, imageYSize);

@@ -27,10 +27,10 @@ public class MapPanel extends JPanel {
     // 拖拽开始时，按钮点击的位置
     private Point mpPressedPoint = null;
 
-    // 初始缩放级别，原点的图片
+    // 初始缩放级别，原点的图片(北京)
     private int mpBaseZoom = 10;
-    private int mpBaseX = 800;
-    private int mpBaseY = 380;
+    private int mpBaseX = 841;
+    private int mpBaseY = 387;
 
     // 原点。需要通过原点，初始化加载以及拖拽时新的填充
     private Point origin = null;
@@ -121,6 +121,7 @@ public class MapPanel extends JPanel {
                 img = ImageIO.read(new File(url));
             }
             System.out.println("insertX:" + insertX + ", insertY:" + insertY);
+            System.out.println("x:" + x + ", y:" + y);
             g.drawImage(img, insertX, insertY, 256, 256, null);
         } catch (Exception e) {
             e.printStackTrace();
