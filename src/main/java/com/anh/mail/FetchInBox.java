@@ -1,16 +1,11 @@
 package com.anh.mail;
 
 import com.anh.java8.Article;
-import scala.annotation.meta.field;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
-import javax.sound.midi.Soundbank;
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
